@@ -1,28 +1,48 @@
 
 // Dice Roll Function
 function rollDice(sides){
+    let diceRoll = generateRandomNumber(sides);
+    return diceRoll;
+}
 
+function generateRandomNumber(maxRoll){
+    let randomNumber = 1 + Math.floor(Math.random() * maxRoll);
+    return randomNumber;
 }
 
 function weaponRoll(playerRolling){
-    let weaponOne;
-    let weaponTwo;
-    let weaponThree;
+    let weaponTypeRoll = rollDice(3);
+    let weaponType;
 
-    rollDice(3);
+    if (weaponTypeRoll == 1){
+        weaponType = sword;
+        return weaponType;
+    }
+    else if (weaponTypeRoll == 2){
+        weaponType = hammer;
+        return weaponType;
+    }
+    else if (weaponTypeRoll == 3) {
+        weaponType = shield;
+        return weaponType;
+    }
+    else {
+        console.log("error");
+    }
 }
 
 function attackRatingRoll(playerRolling){
     let attackRatingMax = 10;
+    let attackRating = rollDice(attackRatingMax);
 
-    rollDice(attackRatingMax);
+    return attackRating;
 }
 
 function defenseRatingRoll(playerRolling){
     let defenseRatingMax = 12;
+    let defenseRating = rollDice(defenseRatingMax);
     
-    rollDice(defenseRatingMax);
-
+    return defenseRating;
 }
 
 function healthTotalRoll(playerRolling){
@@ -49,9 +69,11 @@ function calculateAttackOutcome(offense,defense){
     if(attackOutcome < 0){
         attackOutcome = 1;
         damageAppliedToHealth(attackOutcome);
+        return attackOutcome;
     }
     else {
         damageAppliedToHealth(attackOutcome);
+        return attackOutcome;
     }
 }
 
