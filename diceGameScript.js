@@ -1,10 +1,41 @@
+/*
+As a player, I want the game to be fairly balanced.
+As a player, I want to have 2 mullegans on some stat rolls.
+As a player, I want my stats to be baserd off dice rolls.
+As a player, I want the damage to be properly calculated based off damage roll and stat values.
+As a player, I want he correct player to win the game when the other player's health reaches zero.
+*/
 
-// Dice Roll Function
+// Variables for player1/player2
+// name -
+// weapon - 
+// attackRating - 
+// defenseRating -
+// healthTotal -
+
+function Player(name, weapon, attackRating, defenseRating, healthTotal){
+    this.name = name;
+    this.weapon = weapon;
+    this.attackRating = attackRating;
+    this.defenseRating = defenseRating;
+    this.healthTotal = healthTotal;
+}
+
+let player1 = {
+
+}
+
+let player2 = {
+    
+}
+
+// Dice Roll Function XXXXXXXXXXX
 function rollDice(sides){
     let diceRoll = generateRandomNumber(sides);
     return diceRoll;
 }
 
+// Generate Random Number XXXXXXXXX
 function generateRandomNumber(maxRoll){
     let randomNumber = 1 + Math.floor(Math.random() * maxRoll);
     return randomNumber;
@@ -31,6 +62,7 @@ function weaponRoll(playerRolling){
     }
 }
 
+// Roll Attack Rating Value XXXXXX
 function attackRatingRoll(playerRolling){
     let attackRatingMax = 10;
     let attackRating = rollDice(attackRatingMax);
@@ -38,19 +70,26 @@ function attackRatingRoll(playerRolling){
     return attackRating;
 }
 
+// Roll Defense Rating Value XXXXXX
 function defenseRatingRoll(playerRolling){
     let defenseRatingMax = 12;
     let defenseRating = rollDice(defenseRatingMax);
-    
+
     return defenseRating;
 }
 
+// Roll Health Total Value XXXXXXXX
 function healthTotalRoll(playerRolling){
     let baseHealth = 10;
     let healthBonusMax = 20;
     let totalHealth = rollDice(healthBonusMax) + baseHealth;
 
     return totalHealth;
+}
+
+function confirmCharacter(whichPlayerConfirmed){
+    let player = new Player(playerOne_name,playerOne_weapon, playerOne_attackRating, playerOne_defenseRating, playerOne_healthTotal);
+
 }
 
 // Who goes first roll
@@ -63,7 +102,7 @@ function whoGoesFirst(){
     }
 }
 
-// Attack Damage Calculation
+// Attack Damage Calculation XXXXXXXX
 function calculateAttackOutcome(offense,defense){
     attackOutcome = offense - defense;
     if(attackOutcome < 0){
@@ -100,11 +139,6 @@ function staggerChance(){
 
 // Reroll statistic
 function reRollStatistic(){
-
-}
-
-// Confirm Character Statistics
-function characterCreation(){
 
 }
 
