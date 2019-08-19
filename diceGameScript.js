@@ -1,17 +1,25 @@
+"use strict"
 /*
+||||||||||||||| User Stories ||||||||||||||||||||||||||
 As a player, I want the game to be fairly balanced.
 As a player, I want to have 2 mullegans on some stat rolls.
 As a player, I want my stats to be baserd off dice rolls.
 As a player, I want the damage to be properly calculated based off damage roll and stat values.
 As a player, I want he correct player to win the game when the other player's health reaches zero.
-*/
 
-// Variables for player1/player2
-// name -
-// weapon - 
-// attackRating - 
-// defenseRating -
-// healthTotal -
+Goal: Build a functional, console-based dice game utilizing JavaScript and its best practices.
+
+Technologies: JavaScript
+
+User stories:
+(5 points): As a developer, I want to make consistent commits accompanied with good, descriptive commit messages.
+(10 points): As a developer, I want to come up with a game concept played with dice, ensuring that my game concept is more complicated than “War”.
+(10 points): As a developer, I want my game concept to be approved by an instructor, with part of the process being that I walk the instructor through my gameidea so that project user stories can be written out with the instructor.
+(20 points): As a developer, I want my game to have gameplay functionality.
+(10 points): As a developer, I want to have one function capable of “rolling a die” (by generating a random number), regardless of the number of sides.
+(10 points): As a developer, I want to utilize six different dice within my game. (Recommended dice are 4-sided, 6-sided, 8-sided, 10-sided, 12-sided, and 20-sided.Different dice may be substituted. No 2-sided die.)
+
+*/
 
 function Player(name, weapon, attackRating, defenseRating, healthTotal){
     this.name = name;
@@ -87,8 +95,17 @@ function healthTotalRoll(playerRolling){
     return totalHealth;
 }
 
+// Lock in the stats before game starts
 function confirmCharacter(whichPlayerConfirmed){
-    let player = new Player(playerOne_name,playerOne_weapon, playerOne_attackRating, playerOne_defenseRating, playerOne_healthTotal);
+    
+    whichPlayerConfirmed = new Player(
+        name = playerOne,
+        weapon = 1, 
+        attackRating = 10, 
+        defenseRating = 12, 
+        healthTotal= 30
+
+    );
 
 }
 
@@ -103,17 +120,38 @@ function whoGoesFirst(){
 }
 
 // Attack Damage Calculation XXXXXXXX
-function calculateAttackOutcome(offense,defense){
+function calculateAttackDefenseOutcome(offense,defense){
     attackOutcome = offense - defense;
-    if(attackOutcome < 0){
-        attackOutcome = 1;
-        damageAppliedToHealth(attackOutcome);
-        return attackOutcome;
+    if(attackDefenseOutcome < 0){
+        attackDefenseOutcome = 1;
+        damageAppliedToHealth(attackDefenseOutcome);
+        return attackDefenseOutcome;
     }
     else {
-        damageAppliedToHealth(attackOutcome);
-        return attackOutcome;
+        damageAppliedToHealth(attackDefenseOutcome);
+        return attackDefenseOutcome;
     }
+}
+
+function weaponTypeBonusDamage(playerOne_weapon, playerTwo_weapon){
+    let weaponTypeBonus;
+    
+    if (
+    (playerOne_weapon == 1 && playerTwo_weapon == 2) || 
+    (playerOne_weapon == 2 && playerTwo_weapon == 3) || 
+    (playerOne_weapon == 3 && playerTwo_weapon == 1) ||
+
+    (playerTwo_weapon == 1 && playerOne_weapon == 2) ||
+    (playerTwo_weapon == 2 && playerOne_weapon == 3) ||
+    (playerTwo_weapon == 3 && playerOne_weapon == 1)
+    ) {
+        weaponTypeBonus = true;
+    }
+    else {
+        weaponTypeBonus = false;
+    }
+
+    return weaponTypeBonus;
 }
 
 // Attack Damage Application
