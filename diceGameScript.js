@@ -91,7 +91,6 @@ function weaponRoll(playerRolling){
     }
 }
 
-// Roll Attack Rating Value XXXXXX
 function attackRatingRoll(playerRolling){
     let attackRatingMax = 10;
     let attackRating = rollDice(attackRatingMax);
@@ -141,7 +140,6 @@ function healthTotalRoll(playerRolling){
     }
 }
 
-// Lock in the stats before game starts
 function confirmPlayer(whichPlayerConfirmed){
 
     if (whichPlayerConfirmed == 1){
@@ -171,21 +169,38 @@ function confirmPlayer(whichPlayerConfirmed){
 function beginGame(){
     let attackingPlayer;
     let defendingPlayer;
-
     if (whoGoesFirst(2) == true){
-        attackingPlayer = playerOne.name;
-        defendingPlayer = playerTwo.name;
+        attackingPlayer = playerOne;
+        defendingPlayer = playerTwo;
     }
     else {
-        attackingPlayer = playerTwo.name;
-        defendingPlayer = playerOne.name;
+        attackingPlayer = playerTwo;
+        defendingPlayer = playerOne;
     }
-    console.log(attackingPlayer + " will be attacking first!");
+    console.log(attackingPlayer.name + " will be attacking first!");
+
+    let didStagger = staggerChance();
+    let didMiss = missChance();
+    let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
+    let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
+    let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
 
 
-    
+    if(didStagger){
+        attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
+    }
+    else {
+        
+    }
 
-    // postCombatUpdate();
+    if(didMiss){
+        
+    }
+    else {
+        damageAppliedToHealth(defendingPlayer, totalDamageDealt);
+        checkWinCondition(defendingPlayer, attackingPlayer);
+    }
+    postCombatUpdate();
 }
 
 // Who goes first
@@ -198,61 +213,54 @@ function whoGoesFirst(){
     }
 }
 
-function calculateAttackDefenseOutcome(offense,defense){
-    attackOutcome = offense - defense;
-    if(attackDefenseOutcome < 0){
-        attackDefenseOutcome = 1;
-        damageAppliedToHealth(attackDefenseOutcome);
-        return attackDefenseOutcome;
+function calculateAttackDefenseOutcome(attackingPlayer,defendingPlayer){
+    let damageDealt = attackingPlayer.attackRating - defendingPlayer.defenseRating;
+    
+    if(damageDealt < 0){
+        damageDealt = 1;
     }
     else {
-        damageAppliedToHealth(attackDefenseOutcome);
-        return attackDefenseOutcome;
+        damageDealt = damageDealt;
     }
+    return damageDealt;
 }
 
 function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
-    let weaponTypeBonus = false;
-    
     if (
     (attackingPlayer == "sword" && defendingPlayer == "hammer") || 
     (attackingPlayer == "hammer" && defendingPlayer == "shield") || 
     (attackingPlayer == "shield" && defendingPlayer == "sword")
     ){
-        weaponTypeBonus = true;
+        return true;
     }
     else {
-        weaponTypeBonus = false;
+        return false;
     }
-
-    return weaponTypeBonus;
 }
 
-function damageAppliedToHealth(damage, currentHealth){
-    currentHealth -= damage;
-    return currentHealth;
+function damageAppliedToHealth(defendingPlayer, damageDealt){
+    console.log(defendingPlayer + " is going to take " + damageDealt + ".");
+    defendingPlayer.healthTotal -= damageDealt;
 }
 
 // Stagger Roll - if stagger on attack, you lose 1 defense.
 function staggerChance(){
+    let firstRoll = rollDice(6);
+    alert("first stagger roll is " + firstRoll + ", if your next roll is on the same of 3, you will stagger and have reduced defense.");
+    let secondRoll = rollDice(6);
+    console.log("second roll is " + secondRoll + ".");
 
-    let staggerDefenseModifier = -1;
-    firstRoll = rollDice(6);
-    secondRoll = rollDice(6);
-
-    if ((firstRoll > 3 && secondRoll > 3) || firstroll <= 3 && secondRoll <= 3) {
-        modifyStatistic(defenseRating, 0);
+    if ((firstRoll > 3 && secondRoll > 3) || firstRoll <= 3 && secondRoll <= 3) {
+        return false;
     }
     else {
-        modifyStatistic(defenseRating, staggerDefenseModifier);
+        return true;
     }
 }
 
 function missChance(){
     let miss = false;
-
     let missRoll = rollDice(8);
-
     if(missRoll > 7) {
         miss = true;
     }
@@ -260,6 +268,12 @@ function missChance(){
         miss = false;
     }
     return miss;
+}
+
+function checkWinCondition(defendingPlayer, attackingPlayer){
+    if(defendingPlayer.healthTotal < 1) {
+        alert(attackingPlayer + " has won the game and is now the ultimate alpha!");
+    }
 }
 
 function postCombatUpdate(){
