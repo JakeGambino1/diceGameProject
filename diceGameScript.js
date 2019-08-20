@@ -42,13 +42,11 @@ let playerTwo = {
     
 }
 
-// Dice Roll Function XXXXXXXXXXX
 function rollDice(sides){
     let diceRoll = generateRandomNumber(sides);
     return diceRoll;
 }
 
-// Generate Random Number XXXXXXXXX
 function generateRandomNumber(maxRoll){
     let randomNumber = 1 + Math.floor(Math.random() * maxRoll);
     return randomNumber;
@@ -179,28 +177,37 @@ function beginGame(){
     }
     console.log(attackingPlayer.name + " will be attacking first!");
 
-    let didStagger = staggerChance();
-    let didMiss = missChance();
-    let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
-    let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
-    let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
-
-
-    if(didStagger){
-        attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
+    do {
+        combatPhase(attackingPlayer, defendingPlayer);
     }
-    else {
+    while(defendingPlayer.healthTotal > 1);
+
+}
+
+function combatPhase(attackingPlayer, defendingPlayer){
+    do {
+        let didStagger = staggerChance();
+        let didMiss = missChance();
+        let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
+        let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
+        let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
+
+        if(didStagger){
+            attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
+        }
+
+        if(didMiss == false){
+            damageAppliedToHealth(defendingPlayer, totalDamageDealt);
+            console.log(defendingPlayer.name + " took " + totalDamageDealt + " damage!");
+            console.log(defendingPlayer.name + " has " + defendingPlayer.healthTotal + " health remaining!");
+            checkWinCondition(defendingPlayer, attackingPlayer);
+        }
+
+        postCombatUpdate();
         
+            combatPhase(defendingPlayer, attackingPlayer);
     }
-
-    if(didMiss){
-        
-    }
-    else {
-        damageAppliedToHealth(defendingPlayer, totalDamageDealt);
-        checkWinCondition(defendingPlayer, attackingPlayer);
-    }
-    postCombatUpdate();
+    while(defendingPlayer.healthTotal > 1);
 }
 
 // Who goes first
@@ -231,15 +238,18 @@ function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
     (attackingPlayer == "hammer" && defendingPlayer == "shield") || 
     (attackingPlayer == "shield" && defendingPlayer == "sword")
     ){
+        console.log(attackingPlayer.name + " is doing extra damage because " + attackingPlayer.weapon + " beats" + defendingPlayer.weapon + "!");
         return true;
     }
     else {
+        console.log(defendingPlayer.name + "'s " + defendingPlayer.weapon + "  is strong against " + attackingPlayer.name + "'s " + attackingPlayer.weapon + " and will take no extra damage!");
         return false;
     }
+
 }
 
 function damageAppliedToHealth(defendingPlayer, damageDealt){
-    console.log(defendingPlayer + " is going to take " + damageDealt + ".");
+    console.log(defendingPlayer.name + " is going to take " + damageDealt + ".");
     defendingPlayer.healthTotal -= damageDealt;
 }
 
@@ -272,7 +282,7 @@ function missChance(){
 
 function checkWinCondition(defendingPlayer, attackingPlayer){
     if(defendingPlayer.healthTotal < 1) {
-        alert(attackingPlayer + " has won the game and is now the ultimate alpha!");
+        alert(attackingPlayer.name + " has won the game and is now the ultimate alpha!");
     }
 }
 
