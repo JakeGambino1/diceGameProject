@@ -37,6 +37,7 @@
             </div>
 
             <button id="playerOne_confirm" onclick=confirmPlayer(1)>Confirm Player 1</button>
+            <button id="playerOne_mulligan" class="hide" onclick="mulliganRoll(1)">Player 1 Reroll</button>
         </div>
 
         <div id="playerTwoCard">
@@ -66,6 +67,7 @@
             </div>
 
             <button id="playerTwo_confirm" onclick=confirmPlayer(2) >Confirm Player 2</button>
+            <button id="playerTwo_mulligan" class="hide" onclick="mulliganRoll(2)">Player 2 Reroll</button>
         </div>
 
         <button onclick="quickSetup()">Quick Start</button>
@@ -89,6 +91,22 @@
                 Stagger is calculated by rolling a 6-sided dice twice. The first roll determines the base. 
             </p>
         </div>
+
+        <div class="playerTwo_mulligan-selection hide">
+            <ul>
+                <li>Weapon</li>
+                <li>Attack</li>
+                <li>Defense</li>
+                <li>Health</li>
+            </ul>
+        </div>
+
+        <select multiple class="hide">
+            <option value="playerOne_weapon">Weapon</option>
+            <option value="playerOne_attackRating">Attack Rating</option>
+            <option value="playerOne_defenseRating">Defense Rating</option>
+            <option value="playerOne_healthTotal">Health</option>
+        </select>
 
         
         <script src="diceGameScript.js" async defer></script>

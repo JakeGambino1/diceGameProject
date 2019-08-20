@@ -138,8 +138,33 @@ function healthTotalRoll(playerRolling){
     }
 }
 
-function confirmPlayer(whichPlayerConfirmed){
+function mulliganRoll(playerRolling){
+    let weapon = 1;
+    let attackRating = 2;
+    let defenseRating = 3;
+    let healthTotal = 4;
+    let statToMulligan = rollDice(4);
 
+    if(statToMulligan == weapon){
+        weaponRoll(playerRolling);
+        alert("Player " + playerRolling + " has rerolled their weapon.");
+    }
+    else if(statToMulligan == attackRating){
+        attackRatingRoll(playerRolling);
+        alert("Player " + playerRolling + " has rerolled their attack rating. FEAR THAT ATTACK RATING!");
+    }
+    else if(statToMulligan == defenseRating){
+        defenseRatingRoll(playerRolling);
+        alert("Player " + playerRolling + " has rerolled their defense rating. They are scared!");
+    }
+    else if(statToMulligan == healthTotal){
+        healthTotalRoll(playerRolling);
+        alert("Player " + playerRolling + " has attempted to gain more health!!");
+    }
+}
+
+function confirmPlayer(whichPlayerConfirmed){
+    alert("By clicking Ok, you lose the ability to mulligan stats.");
     if (whichPlayerConfirmed == 1){
         playerOne = new Player(
             name = prompt("What name would you like to use for Player 1?"),
@@ -150,6 +175,7 @@ function confirmPlayer(whichPlayerConfirmed){
         )
         document.getElementById("playerOne_confirm").classList.add("hide");
         document.getElementById("playerOneName").innerHTML = name;
+        document.getElementById("playerOne_mulligan").classList.remove("hide");
     }
     else if (whichPlayerConfirmed == 2){
         playerTwo = new Player(
@@ -161,6 +187,7 @@ function confirmPlayer(whichPlayerConfirmed){
             )    
             document.getElementById("playerTwo_confirm").classList.add("hide"); 
             document.getElementById("playerTwoName").innerHTML = name;
+            document.getElementById("playerTwo_mulligan").classList.remove("hide");
     }
 }
 
@@ -265,13 +292,12 @@ function damageAppliedToHealth(defendingPlayer, damageDealt){
     defendingPlayer.healthTotal -= damageDealt;
 }
 
-// Stagger Roll - if stagger on attack, you lose 1 defense.
 function staggerChance(attackingPlayer){
     let firstRoll = rollDice(6);
     console.log(attackingPlayer.name + "'s first stagger roll is " + firstRoll + ".");
     let secondRoll = rollDice(6);
     if ((firstRoll > 3 && secondRoll > 3) || firstRoll <= 3 && secondRoll <= 3) {
-        console.log("Your second roll was " + secondRoll + ". " + attackingPlayer.name + " almost fell over wielding their weapon. Their muscles are atrophied after years of living a beta lifestyle.");
+        console.log(attackingPlayer.name + "'s second roll was " + secondRoll + ". " + attackingPlayer.name + " almost fell over wielding their weapon. Their muscles are atrophied after years of living a beta lifestyle.");
         return true;
     }
     else {
@@ -319,11 +345,5 @@ function reRollStatistic(){
 
 // Modify Statistic
 function modifyStatistic(playerModifying, statisticToBeModified, amount){
-
-}
-
-
-// Nice to Haves
-function quickPlay(){
 
 }
