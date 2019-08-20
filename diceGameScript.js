@@ -175,42 +175,39 @@ function beginGame(){
         attackingPlayer = playerTwo;
         defendingPlayer = playerOne;
     }
+
     console.log(attackingPlayer.name + " will be attacking first!");
 
-    do {
+    while (defendingPlayer.healthTotal > 0) {
         combatPhase(attackingPlayer, defendingPlayer);
     }
-    while(defendingPlayer.healthTotal > 1);
 
+    while (defendingPlayer.healthTotal > 0) {
+        combatPhase(defendingPlayer, attackingPlayer);
+    }
 }
 
 function combatPhase(attackingPlayer, defendingPlayer){
-    do {
-        let didStagger = staggerChance();
-        let didMiss = missChance();
-        let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
-        let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
-        let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
+    let didStagger = staggerChance();
+    let didMiss = missChance();
+    let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
+    let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
+    let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
 
-        if(didStagger){
-            attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
-        }
-
-        if(didMiss == false){
-            damageAppliedToHealth(defendingPlayer, totalDamageDealt);
-            console.log(defendingPlayer.name + " took " + totalDamageDealt + " damage!");
-            console.log(defendingPlayer.name + " has " + defendingPlayer.healthTotal + " health remaining!");
-            checkWinCondition(defendingPlayer, attackingPlayer);
-        }
-
-        postCombatUpdate();
-        
-            combatPhase(defendingPlayer, attackingPlayer);
+    if(didStagger){
+        attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
     }
-    while(defendingPlayer.healthTotal > 1);
+
+    if(didMiss == false){
+        damageAppliedToHealth(defendingPlayer, totalDamageDealt);
+        console.log(defendingPlayer.name + " took " + totalDamageDealt + " damage!");
+        console.log(defendingPlayer.name + " has " + defendingPlayer.healthTotal + " health remaining!");
+    }
+
+    postCombatUpdate();
+    checkWinCondition(defendingPlayer, attackingPlayer);
 }
 
-// Who goes first
 function whoGoesFirst(){
     if (rollDice(2) == 1) {
         return true;
@@ -229,6 +226,7 @@ function calculateAttackDefenseOutcome(attackingPlayer,defendingPlayer){
     else {
         damageDealt = damageDealt;
     }
+    console.log("calculateAttackDefenseOutcome damage = " + damageDealt);
     return damageDealt;
 }
 
@@ -245,7 +243,6 @@ function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
         console.log(defendingPlayer.name + "'s " + defendingPlayer.weapon + "  is strong against " + attackingPlayer.name + "'s " + attackingPlayer.weapon + " and will take no extra damage!");
         return false;
     }
-
 }
 
 function damageAppliedToHealth(defendingPlayer, damageDealt){
@@ -256,14 +253,16 @@ function damageAppliedToHealth(defendingPlayer, damageDealt){
 // Stagger Roll - if stagger on attack, you lose 1 defense.
 function staggerChance(){
     let firstRoll = rollDice(6);
-    alert("first stagger roll is " + firstRoll + ", if your next roll is on the same of 3, you will stagger and have reduced defense.");
+    console.log("first stagger roll is " + firstRoll + ", if your next roll is on the same side of 3, you will stagger and have reduced defense.");
     let secondRoll = rollDice(6);
     console.log("second roll is " + secondRoll + ".");
 
     if ((firstRoll > 3 && secondRoll > 3) || firstRoll <= 3 && secondRoll <= 3) {
+        console.log("first roll was " + firstRoll + ", second roll was " + secondRoll + ", no stagger debuff applied.");
         return false;
     }
     else {
+        console.log("first roll was " + firstRoll + ", second roll was " + secondRoll + ", no stagger debuff (-1 Defense Rating) will be applied at end of turn.")
         return true;
     }
 }
@@ -298,6 +297,18 @@ function postCombatUpdate(){
 
     document.getElementById("playerOne_healthTotal").value = playerOne.healthTotal;
     document.getElementById("playerTwo_healthTotal").value = playerTwo.healthTotal;
+
+    // playerOne.weapon = document.getElementById("playerOne_weapon").value;
+    // playerTwo.weapon = document.getElementById("playerTwo_weapon").value;
+
+    // playerOne.attackRating = document.getElementById("playerOne_attackRating").value;
+    // playerTwo.attackRating = document.getElementById("playerTwo_attackRating").value;
+
+    // playerOne.defenseRating = document.getElementById("playerOne_defenseRating").value;
+    // playerTwo.defenseRating = document.getElementById("playerTwo_defenseRating").value;
+
+    // playerOne.healthTotal = document.getElementById("playerOne_healthTotal").value;
+    // playerTwo.healthTotal = document.getElementById("playerTwo_healthTotal").value;
 }
 
 // Reroll statistic
