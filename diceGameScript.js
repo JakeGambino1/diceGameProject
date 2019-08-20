@@ -21,19 +21,20 @@ User stories:
 
 */
 
-function Player(name, weapon, attackRating, defenseRating, healthTotal){
-    this.name = name;
+class Player{
+    constructor(weapon, attackRating, defenseRating, healthTotal){
     this.weapon = weapon;
     this.attackRating = attackRating;
     this.defenseRating = defenseRating;
     this.healthTotal = healthTotal;
+    }
+} 
+
+let playerOne = {
+
 }
 
-let player1 = {
-
-}
-
-let player2 = {
+let playerTwo = {
     
 }
 
@@ -51,22 +52,41 @@ function generateRandomNumber(maxRoll){
 
 function weaponRoll(playerRolling){
     let weaponTypeRoll = rollDice(3);
-    let weaponType;
 
-    if (weaponTypeRoll == 1){
-        weaponType = sword;
-        return weaponType;
-    }
-    else if (weaponTypeRoll == 2){
-        weaponType = hammer;
-        return weaponType;
-    }
-    else if (weaponTypeRoll == 3) {
-        weaponType = shield;
-        return weaponType;
+    if (playerRolling == 1){
+        if (weaponTypeRoll == 1){
+            document.getElementById("playerOne_weapon").value = "sword";
+            document.getElementById("playerOne_weaponRoll").classList.add("hide");
+        }
+        else if (weaponTypeRoll == 2){
+            document.getElementById("playerOne_weapon").value = "hammer";
+            document.getElementById("playerOne_weaponRoll").classList.add("hide");
+        }
+        else if (weaponTypeRoll == 3) {
+            document.getElementById("playerOne_weapon").value = "shield";
+            document.getElementById("playerOne_weaponRoll").classList.add("hide");
+        }
+        else {
+            console.log("error");
+        }
+        document.getElementById("playerOne_weaponRoll").classList.add("hide");
     }
     else {
-        console.log("error");
+        if (weaponTypeRoll == 1){
+            document.getElementById("playerTwo_weapon").value = "sword";
+            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
+        }
+        else if (weaponTypeRoll == 2){
+            document.getElementById("playerTwo_weapon").value = "hammer";
+            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
+        }
+        else if (weaponTypeRoll == 3) {
+            document.getElementById("playerTwo_weapon").value = "shield";
+            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
+        }
+        else {
+            console.log("error");
+        }
     }
 }
 
@@ -115,16 +135,24 @@ function healthTotalRoll(playerRolling){
 }
 
 // Lock in the stats before game starts
-function confirmCharacter(whichPlayerConfirmed){
-    
-    whichPlayerConfirmed = new Player(
-        name = playerOne,
-        weapon = 1, 
-        attackRating = 10, 
-        defenseRating = 12, 
-        healthTotal= 30
+function confirmPlayer(whichPlayerConfirmed){
 
-    );
+    if (whichPlayerConfirmed == 1){
+        playerOne = new Player(
+            document.getElementById("playerOne_weapon").value,
+            document.getElementById("playerOne_attackRating").value,
+            document.getElementById("playerOne_defenseRating").value,
+            document.getElementById("playerOne_healthTotal").value
+        )
+    }
+    else if (whichPlayerConfirmed == 2){
+        playerTwo = new Player(
+            document.getElementById("playerTwo_weapon").value, 
+            document.getElementById("playerTwo_attackRating").value, 
+            document.getElementById("playerTwo_defenseRating").value, 
+            document.getElementById("playerTwo_healthTotal").value
+            )    
+    }
 }
 
 // Who goes first
@@ -150,18 +178,14 @@ function calculateAttackDefenseOutcome(offense,defense){
     }
 }
 
-function weaponTypeBonusDamage(playerOne_weapon, playerTwo_weapon){
-    let weaponTypeBonus;
+function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
+    let weaponTypeBonus = false;
     
     if (
-    (playerOne_weapon == 1 && playerTwo_weapon == 2) || 
-    (playerOne_weapon == 2 && playerTwo_weapon == 3) || 
-    (playerOne_weapon == 3 && playerTwo_weapon == 1) ||
-
-    (playerTwo_weapon == 1 && playerOne_weapon == 2) ||
-    (playerTwo_weapon == 2 && playerOne_weapon == 3) ||
-    (playerTwo_weapon == 3 && playerOne_weapon == 1)
-    ) {
+    (attackingPlayer == "sword" && defendingPlayer == "hammer") || 
+    (attackingPlayer == "hammer" && defendingPlayer == "shield") || 
+    (attackingPlayer == "shield" && defendingPlayer == "sword")
+    ){
         weaponTypeBonus = true;
     }
     else {
