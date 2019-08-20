@@ -7,6 +7,9 @@ As a player, I want my stats to be baserd off dice rolls.
 As a player, I want the damage to be properly calculated based off damage roll and stat values.
 As a player, I want he correct player to win the game when the other player's health reaches zero.
 
+Nice to Haves:
+Roll all stats and Begin (quickplay button);
+
 Goal: Build a functional, console-based dice game utilizing JavaScript and its best practices.
 
 Technologies: JavaScript
@@ -56,37 +59,34 @@ function weaponRoll(playerRolling){
     if (playerRolling == 1){
         if (weaponTypeRoll == 1){
             document.getElementById("playerOne_weapon").value = "sword";
-            document.getElementById("playerOne_weaponRoll").classList.add("hide");
         }
         else if (weaponTypeRoll == 2){
             document.getElementById("playerOne_weapon").value = "hammer";
-            document.getElementById("playerOne_weaponRoll").classList.add("hide");
         }
         else if (weaponTypeRoll == 3) {
             document.getElementById("playerOne_weapon").value = "shield";
-            document.getElementById("playerOne_weaponRoll").classList.add("hide");
         }
         else {
             console.log("error");
         }
+        document.getElementById("playerOne_weapon").setAttribute("disabled", true);
         document.getElementById("playerOne_weaponRoll").classList.add("hide");
     }
     else {
         if (weaponTypeRoll == 1){
             document.getElementById("playerTwo_weapon").value = "sword";
-            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
         }
         else if (weaponTypeRoll == 2){
             document.getElementById("playerTwo_weapon").value = "hammer";
-            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
         }
         else if (weaponTypeRoll == 3) {
             document.getElementById("playerTwo_weapon").value = "shield";
-            document.getElementById("playerTwo_weaponRoll").classList.add("hide");
         }
         else {
             console.log("error");
         }
+        document.getElementById("playerTwo_weapon").setAttribute("disabled", true);
+        document.getElementById("playerTwo_weaponRoll").classList.add("hide");
     }
 }
 
@@ -98,10 +98,12 @@ function attackRatingRoll(playerRolling){
     if (playerRolling == 1){
         document.getElementById("playerOne_attackRating").value=attackRating;
         document.getElementById("playerOne_attackRatingRoll").classList.add("hide");
+        document.getElementById("playerOne_attackRating").setAttribute("disabled", true);
     }
     else {
         document.getElementById("playerTwo_attackRating").value=attackRating;
         document.getElementById("playerTwo_attackRatingRoll").classList.add("hide");
+        document.getElementById("playerTwo_attackRating").setAttribute("disabled", true);
     }
 }
 
@@ -112,10 +114,12 @@ function defenseRatingRoll(playerRolling){
     if (playerRolling == 1){
         document.getElementById("playerOne_defenseRating").value=defenseRating;
         document.getElementById("playerOne_defenseRatingRoll").classList.add("hide");
+        document.getElementById("playerOne_defenseRating").setAttribute("disabled", true);
     }
     else {
         document.getElementById("playerTwo_defenseRating").value=defenseRating;
         document.getElementById("playerTwo_defenseRatingRoll").classList.add("hide");
+        document.getElementById("playerTwo_defenseRating").setAttribute("disabled", true);
     }
 }
 
@@ -127,10 +131,12 @@ function healthTotalRoll(playerRolling){
     if (playerRolling == 1){
         document.getElementById("playerOne_healthTotal").value=totalHealth;
         document.getElementById("playerOne_healthTotalRoll").classList.add("hide");
+        document.getElementById("playerOne_healthTotal").setAttribute("disabled", true);
     }
     else {
         document.getElementById("playerTwo_healthTotal").value=totalHealth;
         document.getElementById("playerTwo_healthTotalRoll").classList.add("hide");
+        document.getElementById("playerTwo_healthTotal").setAttribute("disabled", true);
     }
 }
 
@@ -144,6 +150,7 @@ function confirmPlayer(whichPlayerConfirmed){
             document.getElementById("playerOne_defenseRating").value,
             document.getElementById("playerOne_healthTotal").value
         )
+        document.getElementById("playerOne_confirm").classList.add("hide");
     }
     else if (whichPlayerConfirmed == 2){
         playerTwo = new Player(
@@ -152,16 +159,22 @@ function confirmPlayer(whichPlayerConfirmed){
             document.getElementById("playerTwo_defenseRating").value, 
             document.getElementById("playerTwo_healthTotal").value
             )    
+            document.getElementById("playerTwo_confirm").classList.add("hide");
     }
+}
+
+function beginGame(){
+    let attackingPlayer = whoGoesFirst();
+
 }
 
 // Who goes first
 function whoGoesFirst(){
     if (rollDice(2) == 1) {
-        // player 1 goes first
+        // playerOne goes first
     }
     else {
-        // player 2 goes first
+        // playerTwo goes first
     }
 }
 
@@ -215,6 +228,20 @@ function staggerChance(){
     }
 }
 
+function missChance(){
+    let miss = false;
+
+    let missRoll = rollDice(8);
+
+    if(missRoll > 7) {
+        miss = true;
+    }
+    else {
+        miss = false;
+    }
+    return miss;
+}
+
 // Reroll statistic
 function reRollStatistic(){
 
@@ -222,5 +249,11 @@ function reRollStatistic(){
 
 // Modify Statistic
 function modifyStatistic(playerModifying, statisticToBeModified, amount){
+
+}
+
+
+// Nice to Haves
+function quickPlay(){
 
 }
