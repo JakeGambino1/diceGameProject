@@ -25,7 +25,8 @@ User stories:
 */
 
 class Player{
-    constructor(weapon, attackRating, defenseRating, healthTotal){
+    constructor(name, weapon, attackRating, defenseRating, healthTotal){
+    this.name = name;
     this.weapon = weapon;
     this.attackRating = attackRating;
     this.defenseRating = defenseRating;
@@ -145,36 +146,55 @@ function confirmPlayer(whichPlayerConfirmed){
 
     if (whichPlayerConfirmed == 1){
         playerOne = new Player(
+            name = prompt("What name would you like to use for Player 1?"),
             document.getElementById("playerOne_weapon").value,
             document.getElementById("playerOne_attackRating").value,
             document.getElementById("playerOne_defenseRating").value,
             document.getElementById("playerOne_healthTotal").value
         )
         document.getElementById("playerOne_confirm").classList.add("hide");
+        document.getElementById("playerOneName").innerHTML = name;
     }
     else if (whichPlayerConfirmed == 2){
         playerTwo = new Player(
+            name = prompt("What name would you like to use for Player 2?"),
             document.getElementById("playerTwo_weapon").value, 
             document.getElementById("playerTwo_attackRating").value, 
             document.getElementById("playerTwo_defenseRating").value, 
             document.getElementById("playerTwo_healthTotal").value
             )    
-            document.getElementById("playerTwo_confirm").classList.add("hide");
+            document.getElementById("playerTwo_confirm").classList.add("hide"); 
+            document.getElementById("playerTwoName").innerHTML = name;
     }
 }
 
 function beginGame(){
-    let attackingPlayer = whoGoesFirst();
+    let attackingPlayer;
+    let defendingPlayer;
 
+    if (whoGoesFirst(2) == true){
+        attackingPlayer = playerOne.name;
+        defendingPlayer = playerTwo.name;
+    }
+    else {
+        attackingPlayer = playerTwo.name;
+        defendingPlayer = playerOne.name;
+    }
+    console.log(attackingPlayer + " will be attacking first!");
+
+
+    
+
+    // postCombatUpdate();
 }
 
 // Who goes first
 function whoGoesFirst(){
     if (rollDice(2) == 1) {
-        // playerOne goes first
+        return true;
     }
     else {
-        // playerTwo goes first
+        return false;
     }
 }
 
@@ -240,6 +260,20 @@ function missChance(){
         miss = false;
     }
     return miss;
+}
+
+function postCombatUpdate(){
+    document.getElementById("playerOne_weapon").value = playerOne.weapon;
+    document.getElementById("playerTwo_weapon").value = playerTwo.weapon;
+
+    document.getElementById("playerOne_attackRating").value = playerOne.attackRating;
+    document.getElementById("playerTwo_attackRating").value = playerTwo.attackRating;
+
+    document.getElementById("playerOne_defenseRating").value = playerOne.defenseRating;
+    document.getElementById("playerTwo_defenseRating").value = playerTwo.defenseRating;
+
+    document.getElementById("playerOne_healthTotal").value = playerOne.healthTotal;
+    document.getElementById("playerTwo_healthTotal").value = playerTwo.healthTotal;
 }
 
 // Reroll statistic
