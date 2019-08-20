@@ -75,24 +75,43 @@ function attackRatingRoll(playerRolling){
     let attackRatingMax = 10;
     let attackRating = rollDice(attackRatingMax);
 
-    return attackRating;
+    if (playerRolling == 1){
+        document.getElementById("playerOne_attackRating").value=attackRating;
+        document.getElementById("playerOne_attackRatingRoll").classList.add("hide");
+    }
+    else {
+        document.getElementById("playerTwo_attackRating").value=attackRating;
+        document.getElementById("playerTwo_attackRatingRoll").classList.add("hide");
+    }
 }
 
-// Roll Defense Rating Value XXXXXX
 function defenseRatingRoll(playerRolling){
     let defenseRatingMax = 12;
     let defenseRating = rollDice(defenseRatingMax);
 
-    return defenseRating;
+    if (playerRolling == 1){
+        document.getElementById("playerOne_defenseRating").value=defenseRating;
+        document.getElementById("playerOne_defenseRatingRoll").classList.add("hide");
+    }
+    else {
+        document.getElementById("playerTwo_defenseRating").value=defenseRating;
+        document.getElementById("playerTwo_defenseRatingRoll").classList.add("hide");
+    }
 }
 
-// Roll Health Total Value XXXXXXXX
 function healthTotalRoll(playerRolling){
     let baseHealth = 10;
     let healthBonusMax = 20;
     let totalHealth = rollDice(healthBonusMax) + baseHealth;
 
-    return totalHealth;
+    if (playerRolling == 1){
+        document.getElementById("playerOne_healthTotal").value=totalHealth;
+        document.getElementById("playerOne_healthTotalRoll").classList.add("hide");
+    }
+    else {
+        document.getElementById("playerTwo_healthTotal").value=totalHealth;
+        document.getElementById("playerTwo_healthTotalRoll").classList.add("hide");
+    }
 }
 
 // Lock in the stats before game starts
@@ -106,10 +125,9 @@ function confirmCharacter(whichPlayerConfirmed){
         healthTotal= 30
 
     );
-
 }
 
-// Who goes first roll
+// Who goes first
 function whoGoesFirst(){
     if (rollDice(2) == 1) {
         // player 1 goes first
@@ -119,7 +137,6 @@ function whoGoesFirst(){
     }
 }
 
-// Attack Damage Calculation XXXXXXXX
 function calculateAttackDefenseOutcome(offense,defense){
     attackOutcome = offense - defense;
     if(attackDefenseOutcome < 0){
@@ -154,7 +171,6 @@ function weaponTypeBonusDamage(playerOne_weapon, playerTwo_weapon){
     return weaponTypeBonus;
 }
 
-// Attack Damage Application
 function damageAppliedToHealth(damage, currentHealth){
     currentHealth -= damage;
     return currentHealth;
@@ -181,6 +197,6 @@ function reRollStatistic(){
 }
 
 // Modify Statistic
-function modifyStatistic(statisticToBeModified, amount){
+function modifyStatistic(playerModifying, statisticToBeModified, amount){
 
 }
