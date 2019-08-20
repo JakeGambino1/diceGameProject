@@ -12,71 +12,83 @@
     <body>
         <div id="playerOneCard">
             <h4 id="playerOneName">Player One</h4>
-            <!-- <form action="" id="playerOne_character"> -->
+            <div class="weapon">
+                <p class="statisticLabel">Weapon:</p>
+                <input id="playerOne_weapon" type="text" value="playerOne_weapon">
+                <button id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</button>
+            </div>
 
-                <div class="weapon">
-                    <p class="statisticLabel">Weapon:</p>
-                    <input id="playerOne_weapon" type="text" value="playerOne_weapon">
-                    <button id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</button>
-                </div>
+            <div class="attackRating">
+                <p class="statisticLabel">Attack Rating:</p>
+                <input id="playerOne_attackRating" type="text" value="playerOne_attackRating">
+                <button id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</button>
+            </div>
 
-                <div class="attackRating">
-                    <p class="statisticLabel">Attack Rating:</p>
-                    <input id="playerOne_attackRating" type="text" value="playerOne_attackRating">
-                    <button id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</button>
-                </div>
+            <div class="defenseRating">
+                <p class="statisticLabel">Defense Rating:</p>
+                <input id="playerOne_defenseRating" type="text" value="playerOne_defenseRating">
+                <button id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</button>
+            </div>
 
-                <div class="defenseRating">
-                    <p class="statisticLabel">Defense Rating:</p>
-                    <input id="playerOne_defenseRating" type="text" value="playerOne_defenseRating">
-                    <button id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</button>
-                </div>
+            <div class="healthTotal">
+                <p class="statisticLabel">Health Total:</p>
+                <input id="playerOne_healthTotal" type="text" value="playerOne_healthTotal">
+                <button id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</button>
+            </div>
 
-                <div class="healthTotal">
-                    <p class="statisticLabel">Health Total:</p>
-                    <input id="playerOne_healthTotal" type="text" value="playerOne_healthTotal">
-                    <button id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</button>
-                </div>
-
-                <button id="playerOne_confirm" onclick=confirmPlayer(1)>Confirm Player 1</button>
-
-            <!-- </form> -->
+            <button id="playerOne_confirm" onclick=confirmPlayer(1)>Confirm Player 1</button>
         </div>
 
         <div id="playerTwoCard">
             <h4 id="playerTwoName">Player Two</h4>
-            <!-- <form action="" id="playerTwo_character"> -->
+            <div class="weapon">
+                <p class="statisticLabel">Weapon:</p>
+                <input id="playerTwo_weapon"type="text" value="playerTwo_weapon">
+                <button  id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</button>
+            </div>
 
-                <div class="weapon">
-                    <p class="statisticLabel">Weapon:</p>
-                    <input id="playerTwo_weapon"type="text" value="playerTwo_weapon">
-                    <button  id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</button>
-                </div>
+            <div class="attackRating">
+                <p class="statisticLabel">Attack Rating:</p>
+                <input id="playerTwo_attackRating"type="text" value="playerTwo_attackRating">
+                <button  id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</button>
+            </div>
 
-                <div class="attackRating">
-                    <p class="statisticLabel">Attack Rating:</p>
-                    <input id="playerTwo_attackRating"type="text" value="playerTwo_attackRating">
-                    <button  id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</button>
-                </div>
+            <div class="defenseRating">
+                <p class="statisticLabel">Defense Rating:</p>
+                <input id="playerTwo_defenseRating"type="text" value="playerTwo_defenseRating">
+                <button  id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</button>
+            </div>
 
-                <div class="defenseRating">
-                    <p class="statisticLabel">Defense Rating:</p>
-                    <input id="playerTwo_defenseRating"type="text" value="playerTwo_defenseRating">
-                    <button  id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</button>
-                </div>
+            <div class="healthTotal">
+                <p class="statisticLabel">Health Total:</p>
+                <input id="playerTwo_healthTotal"type="text" value="playerTwo_healthTotal">
+                <button  id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</button>
+            </div>
 
-                <div class="healthTotal">
-                    <p class="statisticLabel">Health Total:</p>
-                    <input id="playerTwo_healthTotal"type="text" value="playerTwo_healthTotal">
-                    <button  id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</button>
-                </div>
-
-                <button id="playerTwo_confirm" onclick=confirmPlayer(2) >Confirm Player 2</button>
-
-            <!-- </form> -->
+            <button id="playerTwo_confirm" onclick=confirmPlayer(2) >Confirm Player 2</button>
         </div>
 
+        <button onclick="quickSetup()">Quick Start</button>
+
         <button id="beginGame" onclick=beginGame()>Let's Start</button>
+
+        <div class="game-description-card">
+            <p>Rules for the game:
+                <br>
+                <br>
+                Weapon type advantage grants +1 damage bonus in a rock/paper/scissors triangle.
+                <br>
+                Sword > Hammer > Shield > Sword
+                <br>
+                <br>
+                Every attack has a 1 in 8 chance to miss. Rolling an 8 means you missed.
+                <br>
+                <br>
+                Stagger is a mechanic applied on every attack. If you stagger, you suffer a -1 penalty to your defense rating for the duration of the game.
+                <br>
+                Stagger is calculated by rolling a 6-sided dice twice. The first roll determines the base. 
+            </p>
+        </div>
 
         
         <script src="diceGameScript.js" async defer></script>

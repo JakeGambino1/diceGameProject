@@ -1,11 +1,11 @@
 "use strict"
 /*
 ||||||||||||||| User Stories ||||||||||||||||||||||||||
-As a player, I want the game to be fairly balanced.
-As a player, I want to have 2 mullegans on some stat rolls.
-As a player, I want my stats to be baserd off dice rolls.
-As a player, I want the damage to be properly calculated based off damage roll and stat values.
-As a player, I want he correct player to win the game when the other player's health reaches zero.
+As a player, I want the game to be fairly balanced.  X
+As a player, I want to have 2 mulligans on some stat rolls. 
+As a player, I want my stats to be based off dice rolls.  X
+As a player, I want the damage to be properly calculated based off damage roll and stat values.  X
+As a player, I want he correct player to win the game when the other player's health reaches zero.  X
 
 Nice to Haves:
 Roll all stats and Begin (quickplay button);
@@ -164,6 +164,19 @@ function confirmPlayer(whichPlayerConfirmed){
     }
 }
 
+function quickSetup(){
+    weaponRoll(1);
+    weaponRoll(2);
+    attackRatingRoll(1);
+    attackRatingRoll(2);
+    defenseRatingRoll(1);
+    defenseRatingRoll(2);
+    healthTotalRoll(1);
+    healthTotalRoll(2);
+    confirmPlayer(1);
+    confirmPlayer(2);
+}
+
 function beginGame(){
     let attackingPlayer;
     let defendingPlayer;
@@ -178,23 +191,20 @@ function beginGame(){
 
     console.log(attackingPlayer.name + " will be attacking first!");
 
-    while (defendingPlayer.healthTotal > 0) {
+    while (attackingPlayer.healthTotal > 0 && defendingPlayer.healthTotal > 0) {
         combatPhase(attackingPlayer, defendingPlayer);
-    }
-
-    while (defendingPlayer.healthTotal > 0) {
         combatPhase(defendingPlayer, attackingPlayer);
     }
 }
 
 function combatPhase(attackingPlayer, defendingPlayer){
-    let didStagger = staggerChance();
+    let didStagger = staggerChance(attackingPlayer);
     let didMiss = missChance();
     let attackDamage = calculateAttackDefenseOutcome(attackingPlayer, defendingPlayer);
     let weaponTypeBonusDmg = weaponTypeBonusDamage(attackingPlayer, defendingPlayer);
     let totalDamageDealt = attackDamage + weaponTypeBonusDmg;
 
-    if(didStagger){
+    if(didStagger == false){
         attackingPlayer.defenseRating = attackingPlayer.defenseRating - 1;
     }
 
@@ -202,6 +212,9 @@ function combatPhase(attackingPlayer, defendingPlayer){
         damageAppliedToHealth(defendingPlayer, totalDamageDealt);
         console.log(defendingPlayer.name + " took " + totalDamageDealt + " damage!");
         console.log(defendingPlayer.name + " has " + defendingPlayer.healthTotal + " health remaining!");
+    }
+    else {
+        console.log(attackingPlayer.name + " missed like a scrub! What are they doing?!");
     }
 
     postCombatUpdate();
@@ -222,12 +235,14 @@ function calculateAttackDefenseOutcome(attackingPlayer,defendingPlayer){
     
     if(damageDealt < 0){
         damageDealt = 1;
+        console.log("calculateAttackDefenseOutcome damage = " + damageDealt);
+        return damageDealt;
     }
     else {
         damageDealt = damageDealt;
+        console.log("calculateAttackDefenseOutcome damage = " + damageDealt);
+        return damageDealt;
     }
-    console.log("calculateAttackDefenseOutcome damage = " + damageDealt);
-    return damageDealt;
 }
 
 function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
@@ -240,7 +255,7 @@ function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
         return true;
     }
     else {
-        console.log(defendingPlayer.name + "'s " + defendingPlayer.weapon + "  is strong against " + attackingPlayer.name + "'s " + attackingPlayer.weapon + " and will take no extra damage!");
+        console.log(defendingPlayer.name + " braces for impact.  " + attackingPlayer.name + "'s weapon is no match for the alpha!");
         return false;
     }
 }
@@ -251,19 +266,17 @@ function damageAppliedToHealth(defendingPlayer, damageDealt){
 }
 
 // Stagger Roll - if stagger on attack, you lose 1 defense.
-function staggerChance(){
+function staggerChance(attackingPlayer){
     let firstRoll = rollDice(6);
-    console.log("first stagger roll is " + firstRoll + ", if your next roll is on the same side of 3, you will stagger and have reduced defense.");
+    console.log(attackingPlayer.name + "'s first stagger roll is " + firstRoll + ".");
     let secondRoll = rollDice(6);
-    console.log("second roll is " + secondRoll + ".");
-
     if ((firstRoll > 3 && secondRoll > 3) || firstRoll <= 3 && secondRoll <= 3) {
-        console.log("first roll was " + firstRoll + ", second roll was " + secondRoll + ", no stagger debuff applied.");
-        return false;
+        console.log("Your second roll was " + secondRoll + ". " + attackingPlayer.name + " almost fell over wielding their weapon. Their muscles are atrophied after years of living a beta lifestyle.");
+        return true;
     }
     else {
-        console.log("first roll was " + firstRoll + ", second roll was " + secondRoll + ", no stagger debuff (-1 Defense Rating) will be applied at end of turn.")
-        return true;
+        console.log("Your second roll was " + secondRoll + ". " + attackingPlayer + " has great control over their weapon and keeps their balance.")
+        return false;
     }
 }
 
@@ -297,18 +310,6 @@ function postCombatUpdate(){
 
     document.getElementById("playerOne_healthTotal").value = playerOne.healthTotal;
     document.getElementById("playerTwo_healthTotal").value = playerTwo.healthTotal;
-
-    // playerOne.weapon = document.getElementById("playerOne_weapon").value;
-    // playerTwo.weapon = document.getElementById("playerTwo_weapon").value;
-
-    // playerOne.attackRating = document.getElementById("playerOne_attackRating").value;
-    // playerTwo.attackRating = document.getElementById("playerTwo_attackRating").value;
-
-    // playerOne.defenseRating = document.getElementById("playerOne_defenseRating").value;
-    // playerTwo.defenseRating = document.getElementById("playerTwo_defenseRating").value;
-
-    // playerOne.healthTotal = document.getElementById("playerOne_healthTotal").value;
-    // playerTwo.healthTotal = document.getElementById("playerTwo_healthTotal").value;
 }
 
 // Reroll statistic
