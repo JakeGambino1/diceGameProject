@@ -164,7 +164,7 @@ function mulliganRoll(playerRolling){
 }
 
 function confirmPlayer(whichPlayerConfirmed){
-    alert("By clicking Ok, you lose the ability to mulligan stats.");
+    alert("Once confirming, you will have an option to mulligan one random stat to a new random value. Use it if you have a gambling problem... or really bad rolls across the board.")
     if (whichPlayerConfirmed == 1){
         playerOne = new Player(
             name = prompt("What name would you like to use for Player 1?"),
@@ -301,7 +301,7 @@ function staggerChance(attackingPlayer){
         return true;
     }
     else {
-        console.log("Your second roll was " + secondRoll + ". " + attackingPlayer + " has great control over their weapon and keeps their balance.")
+        console.log(attackingPlayer.name + "'s second roll was " + secondRoll + ". " + attackingPlayer.name + " has great control over their weapon and keeps their balance.")
         return false;
     }
 }
