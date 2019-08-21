@@ -60,3 +60,17 @@ h2 {
     padding-bottom: 0;
     margin-bottom: 0;
 }
+
+.inputField {
+    color: black;
+    font-weight: bold;
+    background-color: rgba(211, 16, 16, 0.7);
+    padding: 1px;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.container .inputField {
+    width: 100%;
+    /* clear: both; */
+}
