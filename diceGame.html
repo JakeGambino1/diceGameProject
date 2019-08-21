@@ -7,73 +7,116 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="diceGameStyles.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
     </head>
 
     <body>
-        <div id="playerOneCard">
-            <h4 id="playerOneName">Player One</h4>
-            <div class="weapon">
-                <p class="statisticLabel">Weapon:</p>
-                <input id="playerOne_weapon" type="text" value="playerOne_weapon">
-                <button id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</button>
+    <div class="container">
+        <h2>Alpha Duel:
+            <div class="divider"></div> 
+        Betas get Cucked Edition</h2>
+        <div class="row">
+            <div id="playerOneCard" class="col m6 s12">
+                <h4 id="playerOneName" class="playerName">Beta One</h4>
+                <div class="weapon input-field row section">
+                    <p class="statisticLabel">Weapon</p>
+                    <div class="col s4 right-align">
+                        <a class="btn" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
+                    </div>
+                    <div class="col s8">
+                        <input id="playerOne_weapon" type="text" placeholder="Get a weapon!">
+                    </div>
+                </div>
+
+                <div class="attackRating row section">
+                    <p class="statisticLabel">Attack Rating</p>
+                    <div class="col s4 right-align">
+                        <a class="btn" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
+                    </div>
+                    <div class="col s8">
+                        <input id="playerOne_attackRating" type="text" placeholder="may RNG bless you with sick deeps">
+                    </div>
+                </div>
+
+                <div class="defenseRating row section">
+                    <p class="statisticLabel">Defense Rating</p>
+                    <div class="col s4 right-align">
+                        <a class="btn" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
+                    </div>
+                    <div class="col s8">
+                        <input id="playerOne_defenseRating" type="text" placeholder="may your balls be made of steel">
+                    </div>
+                </div>
+
+                <div class="healthTotal row section">
+                    <p class="statisticLabel">Health Total</p>
+                    <div class="col s4 right-align">
+                        <a class="btn" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
+                    </div>
+                    <div class="col s8">
+                        <input id="playerOne_healthTotal" type="text" placeholder="only cats get 9 lives">
+                    </div>
+                </div>
+                <div class="row center-align section">
+                    <a class="btn" id="playerOne_confirm" onclick=confirmPlayer(1)><i class="material-icons">check</i> Confirm Player 1</a>
+                    <a class="btn" id="playerOne_mulligan" class="hide" onclick="mulliganRoll(1)">Player 1 Reroll <i class="material-icons">add</i></a>
+                </div>
             </div>
 
-            <div class="attackRating">
-                <p class="statisticLabel">Attack Rating:</p>
-                <input id="playerOne_attackRating" type="text" value="playerOne_attackRating">
-                <button id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</button>
-            </div>
+            <div id="playerTwoCard" class="col m6 s12">
+                <h4 id="playerTwoName" class="playerName">Beta Two</h4>
+                <div class="weapon row section">
+                    <p class="statisticLabel">Weapon</p>
+                    <div class="col s8">
+                        <input id="playerTwo_weapon"type="text" placeholder="Get a weapon!">
+                    </div>
+                    <div class="col s4">
+                        <a class="btn" id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</a>
+                    </div>
+                </div>
 
-            <div class="defenseRating">
-                <p class="statisticLabel">Defense Rating:</p>
-                <input id="playerOne_defenseRating" type="text" value="playerOne_defenseRating">
-                <button id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</button>
-            </div>
+                <div class="attackRating row section">
+                    <p class="statisticLabel">Attack Rating</p>
+                    <div class="col s8">
+                        <input id="playerTwo_attackRating"type="text" placeholder="may RNG bless you with sick deeps">
+                    </div>
+                    <div class="col s4">
+                        <a class="btn" id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</a>
+                    </div>
+                </div>
 
-            <div class="healthTotal">
-                <p class="statisticLabel">Health Total:</p>
-                <input id="playerOne_healthTotal" type="text" value="playerOne_healthTotal">
-                <button id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</button>
-            </div>
+                <div class="defenseRating row section">
+                    <p class="statisticLabel">Defense Rating</p>
+                    <div class="col s8">
+                        <input id="playerTwo_defenseRating"type="text" placeholder="may your balls be made of steel">
+                    </div>
+                    <div class="col s4">
+                        <a class="btn" id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</a>
+                    </div>
+                </div>
 
-            <button id="playerOne_confirm" onclick=confirmPlayer(1)>Confirm Player 1</button>
-            <button id="playerOne_mulligan" class="hide" onclick="mulliganRoll(1)">Player 1 Reroll</button>
+                <div class="healthTotal row section">
+                    <p class="statisticLabel">Health Total</p>
+                    <div class="col s8">
+                        <input id="playerTwo_healthTotal"type="text" placeholder="only cats get 9 lives">
+                    </div>
+                    <div class="col s4">
+                        <a class="btn" id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</a>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <a class="btn" id="playerTwo_confirm" onclick=confirmPlayer(2)><i class="material-icons">check</i> Confirm Player 2</a>
+                    <a class="btn" id="playerTwo_mulligan" class="hide" onclick="mulliganRoll(2)">Player 2 Reroll <i class="material-icons">add</i></a>
+                </div>
+            </div>
         </div>
-
-        <div id="playerTwoCard">
-            <h4 id="playerTwoName">Player Two</h4>
-            <div class="weapon">
-                <p class="statisticLabel">Weapon:</p>
-                <input id="playerTwo_weapon"type="text" value="playerTwo_weapon">
-                <button  id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</button>
-            </div>
-
-            <div class="attackRating">
-                <p class="statisticLabel">Attack Rating:</p>
-                <input id="playerTwo_attackRating"type="text" value="playerTwo_attackRating">
-                <button  id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</button>
-            </div>
-
-            <div class="defenseRating">
-                <p class="statisticLabel">Defense Rating:</p>
-                <input id="playerTwo_defenseRating"type="text" value="playerTwo_defenseRating">
-                <button  id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</button>
-            </div>
-
-            <div class="healthTotal">
-                <p class="statisticLabel">Health Total:</p>
-                <input id="playerTwo_healthTotal"type="text" value="playerTwo_healthTotal">
-                <button  id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</button>
-            </div>
-
-            <button id="playerTwo_confirm" onclick=confirmPlayer(2) >Confirm Player 2</button>
-            <button id="playerTwo_mulligan" class="hide" onclick="mulliganRoll(2)">Player 2 Reroll</button>
+        <div class="divider"></div>
+        <div class="row center-align">
+            <a class="btn" onclick="quickSetup()">Quick Start</a>
+            <a class="btn" id="beginGame" onclick=beginGame()>Let's Start</a>
         </div>
-
-        <button onclick="quickSetup()">Quick Start</button>
-
-        <button id="beginGame" onclick=beginGame()>Let's Start</button>
-
         <div class="game-description-card">
             <p>Rules for the game:
                 <br>
@@ -107,8 +150,9 @@
             <option value="playerOne_defenseRating">Defense Rating</option>
             <option value="playerOne_healthTotal">Health</option>
         </select>
-
+    </div>
         
         <script src="diceGameScript.js" async defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
 </html>

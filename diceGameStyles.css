@@ -6,3 +6,23 @@
 .hide {
     display:none;
 }
+
+.container {
+    border: 1px solid black;
+}
+
+.statisticLabel, .playerName {
+    text-align: center;
+}
+
+.playerName {
+    text-decoration: underline;
+}
+
+h2 {
+    text-align: center;
+}
+
+.btn {
+    margin-bottom: 5px;
+}
