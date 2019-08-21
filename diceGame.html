@@ -18,7 +18,7 @@
             <h2>Alpha Duel:
             <div class="divider"></div> 
             Betas get Cucked Edition</h2>
-            <div class="center-align"><a class="waves-effect waves-light btn modal-trigger pulse" href="#alphaDuelRules">Rules of the Duel</a></div>
+            <div class="center-align"><a class="pulse waves-effect waves-light btn modal-trigger" href="#alphaDuelRules">Rules of the Duel</a></div>
         </div>
         <div class="row">
             <div id="playerOneCard" class="col m6 s12">
@@ -27,10 +27,10 @@
                 <div class="weapon row section">
                     <p class="statisticLabel">Weapon</p>
                     <div class="col s4 right-align">
-                        <a class="btn" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
                     </div>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerOne_weaponRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerOne_weapon" class="inputField" type="textarea" placeholder="Get a weapon!">
                         </span>
                     </div>
@@ -39,10 +39,10 @@
                 <div class="attackRating row section">
                     <p class="statisticLabel">Attack Rating</p>
                     <div class="col s4 right-align">
-                        <a class="btn" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
                     </div>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerOne_attackRatingRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerOne_attackRating" class="inputField" type="textarea" placeholder="Bring sick deeps">
                         </span>
                     </div>
@@ -51,10 +51,10 @@
                 <div class="defenseRating row section">
                     <p class="statisticLabel">Defense Rating</p>
                     <div class="col s4 right-align">
-                        <a class="btn" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
                     </div>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerOne_defenseRatingRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerOne_defenseRating" class="inputField" type="textarea" placeholder="Balls of Steel!">
                         </span>
                     </div>
@@ -63,15 +63,16 @@
                 <div class="healthTotal row section">
                     <p class="statisticLabel">Health Total</p>
                     <div class="col s4 right-align">
-                        <a class="btn" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
                     </div>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerOne_healthTotalRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerOne_healthTotal" class="inputField" type="textarea" placeholder="only cats get 9 lives">
                         </span>
                     </div>
                 </div>
 
+                <p class="statisticLabel">Health Bar</p>
                 <progress id="playerOne_currentHealth" max="30"></progress>
 
                 <div class="row center-align section">
@@ -82,54 +83,55 @@
 
             <div id="playerTwoCard" class="col m6 s12">
                 <h4 id="playerTwoName" class="playerName">Beta Two</h4>
+
                 <div class="weapon row section">
                     <p class="statisticLabel">Weapon</p>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerTwo_weaponRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerTwo_weapon" class="inputField" type="textarea" placeholder="Get a weapon!">
                         </span>
                     </div>
                     <div class="col s4">
-                        <a class="btn" id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerTwo_weaponRoll" onclick="weaponRoll(2)">Roll Stat</a>
                     </div>
                 </div>
 
                 <div class="attackRating row section">
                     <p class="statisticLabel">Attack Rating</p>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerTwo_attackRatingRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerTwo_attackRating" class="inputField" type="textarea" placeholder="Bring sick deeps">
                         </span>
                     </div>
                     <div class="col s4">
-                        <a class="btn" id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerTwo_attackRatingRoll" onclick="attackRatingRoll(2)">Roll Stat</a>
                     </div>
                 </div>
 
                 <div class="defenseRating row section">
                     <p class="statisticLabel">Defense Rating</p>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerTwo_defenseRatingRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerTwo_defenseRating" class="inputField" type="textarea" placeholder="Balls of Steel!">
                         </span>
                     </div>
                     <div class="col s4">
-                        <a class="btn" id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerTwo_defenseRatingRoll" onclick="defenseRatingRoll(2)">Roll Stat</a>
                     </div>
                 </div>
 
                 <div class="healthTotal row section">
                     <p class="statisticLabel">Health Total</p>
-                    <div class="col s8">
-                        <span>
+                    <div id="playerTwo_healthTotalRoll-inputArea" class="col s8">
+                        <span class="hoverable">
                             <input id="playerTwo_healthTotal" class="inputField" type="textarea" placeholder="only cats get 9 lives">
                         </span>
                     </div>
                     <div class="col s4">
-                        <a class="btn" id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</a>
+                        <a class="btn orange lighten-2 black-text" id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</a>
                     </div>
                 </div>
-                
+                <p class="statisticLabel">Health Bar</p>
                 <progress id="playerTwo_currentHealth" max="30"></progress>
 
                 <div class="row center-align">
@@ -184,6 +186,8 @@
                         <li>Combat
                             <ol>
                                 <li>Each attack has a chance to stagger by rolling two die. If both die rolls are on the same side of 3, the player is staggered and loses 1 defense for the remainder of the showdown.</li>
+                                <li>Each player has a base health roll of 10. The 20-sided dice roll adds to that number.</li>
+                                <li>Minimum damage from a combat round is 1.</li>
                                 <li>There is a bonus weapon damage stat, like rock-paper-scissors
                                     <ol>
                                         <li>Sword > Hammer</li>

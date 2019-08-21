@@ -70,6 +70,7 @@ function weaponRoll(playerRolling){
         }
         document.getElementById("playerOne_weapon").setAttribute("disabled", true);
         document.getElementById("playerOne_weaponRoll").classList.add("hide");
+        document.getElementById("playerOne_weaponRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
         if (weaponTypeRoll == 1){
@@ -86,6 +87,7 @@ function weaponRoll(playerRolling){
         }
         document.getElementById("playerTwo_weapon").setAttribute("disabled", true);
         document.getElementById("playerTwo_weaponRoll").classList.add("hide");
+        document.getElementById("playerTwo_weaponRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -97,11 +99,14 @@ function attackRatingRoll(playerRolling){
         document.getElementById("playerOne_attackRating").value=attackRating;
         document.getElementById("playerOne_attackRatingRoll").classList.add("hide");
         document.getElementById("playerOne_attackRating").setAttribute("disabled", true);
+        document.getElementById("playerOne_attackRatingRoll-inputArea").classList.add("s12", "center-align");
+        
     }
     else {
         document.getElementById("playerTwo_attackRating").value=attackRating;
         document.getElementById("playerTwo_attackRatingRoll").classList.add("hide");
         document.getElementById("playerTwo_attackRating").setAttribute("disabled", true);
+        document.getElementById("playerTwo_attackRatingRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -113,11 +118,13 @@ function defenseRatingRoll(playerRolling){
         document.getElementById("playerOne_defenseRating").value=defenseRating;
         document.getElementById("playerOne_defenseRatingRoll").classList.add("hide");
         document.getElementById("playerOne_defenseRating").setAttribute("disabled", true);
+        document.getElementById("playerOne_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
         document.getElementById("playerTwo_defenseRating").value=defenseRating;
         document.getElementById("playerTwo_defenseRatingRoll").classList.add("hide");
         document.getElementById("playerTwo_defenseRating").setAttribute("disabled", true);
+        document.getElementById("playerTwo_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -130,11 +137,13 @@ function healthTotalRoll(playerRolling){
         document.getElementById("playerOne_healthTotal").value=totalHealth;
         document.getElementById("playerOne_healthTotalRoll").classList.add("hide");
         document.getElementById("playerOne_healthTotal").setAttribute("disabled", true);
+        document.getElementById("playerOne_healthTotalRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
         document.getElementById("playerTwo_healthTotal").value=totalHealth;
         document.getElementById("playerTwo_healthTotalRoll").classList.add("hide");
         document.getElementById("playerTwo_healthTotal").setAttribute("disabled", true);
+        document.getElementById("playerTwo_healthTotalRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -343,15 +352,4 @@ function postCombatUpdate(){
     document.getElementById("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
 }
 
-function reRollStatistic(){
-
-}
-
-function modifyStatistic(playerModifying, statisticToBeModified, amount){
-
-}
-
-function initializeMaterializeCSS(){
-    M.AutoInit();
-}
-initializeMaterializeCSS();
+M.AutoInit();
