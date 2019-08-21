@@ -350,3 +350,8 @@ function reRollStatistic(){
 function modifyStatistic(playerModifying, statisticToBeModified, amount){
 
 }
+
+function initializeMaterializeCSS(){
+    M.AutoInit();
+}
+initializeMaterializeCSS();

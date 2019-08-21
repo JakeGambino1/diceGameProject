@@ -1,9 +1,13 @@
 body {
     background-image: url(https://cdn.newsapi.com.au/image/v1/e1f5bf097e57e54a28bdbdeb62590359);
+    background-attachment: fixed;
 }
 
 .container {
-    background-color: rgba(255,255,255, .85)
+    background-color: rgba(255, 255, 255, 0.7);
+    margin-top: 10px;
+    border-radius: 25px;
+    box-shadow: 15px 10px 30px rgba(214, 145, 16, 0.397);
 }
 
 .statisticLabel {
@@ -21,6 +25,8 @@ body {
 
 .statisticLabel, .playerName {
     text-align: center;
+    padding-top: 0;
+    margin-top: 0;
 }
 
 .playerName {
@@ -29,6 +35,8 @@ body {
 
 h2 {
     text-align: center;
+    margin: 0;
+    padding: 0;
 }
 
 .btn {
@@ -46,4 +54,9 @@ h2 {
 
 .title_container{
     color: blue;
+}
+
+.row {
+    padding-bottom: 0;
+    margin-bottom: 0;
 }

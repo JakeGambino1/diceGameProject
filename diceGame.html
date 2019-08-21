@@ -6,9 +6,9 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="diceGameStyles.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="diceGameStyles.css">
 
     </head>
 
@@ -18,12 +18,13 @@
             <h2>Alpha Duel:
             <div class="divider"></div> 
             Betas get Cucked Edition</h2>
+            <div class="center-align"><a class="waves-effect waves-light btn modal-trigger" href="#alphaDuelRules">Rules of the Duel</a></div>
         </div>
         <div class="row">
             <div id="playerOneCard" class="col m6 s12">
                 <h4 id="playerOneName" class="playerName">Beta One</h4>
                 <div class="weapon input-field row section">
-                    <p class="statisticLabel flow-text">Weapon</p>
+                    <p class="statisticLabel">Weapon</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
                     </div>
@@ -33,7 +34,7 @@
                 </div>
 
                 <div class="attackRating row section">
-                    <p class="statisticLabel flow-text">Attack Rating</p>
+                    <p class="statisticLabel">Attack Rating</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
                     </div>
@@ -43,7 +44,7 @@
                 </div>
 
                 <div class="defenseRating row section">
-                    <p class="statisticLabel flow-text">Defense Rating</p>
+                    <p class="statisticLabel">Defense Rating</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
                     </div>
@@ -53,7 +54,7 @@
                 </div>
 
                 <div class="healthTotal row section">
-                    <p class="statisticLabel flow-text">Health Total</p>
+                    <p class="statisticLabel">Health Total</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
                     </div>
@@ -71,7 +72,7 @@
             <div id="playerTwoCard" class="col m6 s12">
                 <h4 id="playerTwoName" class="playerName">Beta Two</h4>
                 <div class="weapon row section">
-                    <p class="statisticLabel flow-text">Weapon</p>
+                    <p class="statisticLabel">Weapon</p>
                     <div class="col s8">
                         <input id="playerTwo_weapon"type="text" placeholder="Get a weapon!">
                     </div>
@@ -81,7 +82,7 @@
                 </div>
 
                 <div class="attackRating row section">
-                    <p class="statisticLabel flow-text">Attack Rating</p>
+                    <p class="statisticLabel">Attack Rating</p>
                     <div class="col s8">
                         <input id="playerTwo_attackRating"type="text" placeholder="may RNG bless you with sick deeps">
                     </div>
@@ -91,7 +92,7 @@
                 </div>
 
                 <div class="defenseRating row section">
-                    <p class="statisticLabel flow-text">Defense Rating</p>
+                    <p class="statisticLabel">Defense Rating</p>
                     <div class="col s8">
                         <input id="playerTwo_defenseRating"type="text" placeholder="may your balls be made of steel">
                     </div>
@@ -101,7 +102,7 @@
                 </div>
 
                 <div class="healthTotal row section">
-                    <p class="statisticLabel flow-text">Health Total</p>
+                    <p class="statisticLabel">Health Total</p>
                     <div class="col s8">
                         <input id="playerTwo_healthTotal"type="text" placeholder="only cats get 9 lives">
                     </div>
@@ -122,7 +123,7 @@
             <a class="red btn" onclick="quickSetup()">Quick Start</a>
             <a class="yellow black-text btn" id="beginGame" onclick=beginGame()>Let's Start</a>
         </div>
-        <div class="game-description-card">
+        <!-- <div class="game-description-card">
             <p>Rules for the game:
                 <br>
                 <br>
@@ -140,10 +141,33 @@
                 <br>
                 <br>
                 Each player can mulligan individual stats, at random, after initial confirmation. You are not allowed to enter your own values.
-            </p>
-        </div>
+            </p> -->
+
+            <div id="alphaDuelRules" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>As the sun rose...</h4>
+                    <p>Beta One awoke in his parents' basement. Like every day for the last year, he woke up to find his parents had already gone to work.
+                        <br>
+                        <br>
+                        On the counter, he found a note from Mom:
+                        <blockquote>
+                            Leftovers in the fridge. I know things are tough right now, but it will get better. You just have to GET A FUCKING JOB AND GET OUT OF OUR DAMN HOUSE!
+                        </blockquote>
+                        Typical, he thought. But something was different about this morning... as he took a bite of his avocado toast, he decided enough is enough! He was going to leave the beta lifestyle. His evolution would be swift and his alpha dominance without question. He took one more bite of avocado toast and gave the rest to his dog.
+                        <br>
+                        <br>
+                        And with a soy-infused tug at the door, he was on his way.</p>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-close btn">Agree to the terms of the duel!</a>
+                </div>
+            </div> 
+    </div>
+
         
-        <script src="diceGameScript.js" async defer></script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script src="diceGameScript.js" async defer></script>
     </body>
 </html>
