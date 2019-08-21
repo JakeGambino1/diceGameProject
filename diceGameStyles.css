@@ -1,6 +1,8 @@
 body {
     background-image: url(https://cdn.newsapi.com.au/image/v1/e1f5bf097e57e54a28bdbdeb62590359);
     background-attachment: fixed;
+    height: 100%;
+    width: 100%;
 }
 
 .container {

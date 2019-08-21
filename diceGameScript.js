@@ -173,7 +173,7 @@ function mulliganRoll(playerRolling){
 }
 
 function confirmPlayer(whichPlayerConfirmed){
-    alert("Once confirming, you will have an option to mulligan one random stat to a new random value. Use it if you have a gambling problem... or really bad rolls across the board.")
+    alert("Once confirming, you will have an option to mulligan random stats to random values. Use it if you have a gambling problem... or really bad rolls across the board.")
     if (whichPlayerConfirmed == 1){
         playerOne = new Player(
             name = prompt("What name would you like to use for Player 1?"),
@@ -293,7 +293,7 @@ function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
         return true;
     }
     else {
-        console.log(defendingPlayer.name + " braces for impact.  " + attackingPlayer.name + "'s weapon is no match for the alpha plays!");
+        console.log(defendingPlayer.name + " braces for impact!");
         return false;
     }
 }

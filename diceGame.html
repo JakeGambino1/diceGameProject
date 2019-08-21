@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>Alpha Duel: Become O.G.</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -18,7 +18,7 @@
             <h2>Alpha Duel:
             <div class="divider"></div> 
             Betas get Cucked Edition</h2>
-            <div class="center-align"><a class="pulse waves-effect waves-light btn modal-trigger" href="#alphaDuelRules">Rules of the Duel</a></div>
+            <div class="center-align"><a class="btn modal-trigger" href="#alphaDuelRules">Rules of the Duel</a></div>
         </div>
         <div class="row">
             <div id="playerOneCard" class="col m6 s12">
@@ -30,7 +30,7 @@
                         <a class="btn orange lighten-2 black-text" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
                     </div>
                     <div id="playerOne_weaponRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="Sword > Hammer > Shield > Sword">
                             <input id="playerOne_weapon" class="inputField" type="textarea" placeholder="Get a weapon!">
                         </span>
                     </div>
@@ -42,7 +42,7 @@
                         <a class="btn orange lighten-2 black-text" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
                     </div>
                     <div id="playerOne_attackRatingRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="attack determines the maximum damage you can do, less defender's defense with a 1 damage minimum">
                             <input id="playerOne_attackRating" class="inputField" type="textarea" placeholder="Bring sick deeps">
                         </span>
                     </div>
@@ -54,7 +54,7 @@
                         <a class="btn orange lighten-2 black-text" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
                     </div>
                     <div id="playerOne_defenseRatingRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="Defense determines your resistance to attack damage. If staggered, you will lose 1 defense for the remainder of the game.">
                             <input id="playerOne_defenseRating" class="inputField" type="textarea" placeholder="Balls of Steel!">
                         </span>
                     </div>
@@ -66,7 +66,7 @@
                         <a class="btn orange lighten-2 black-text" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
                     </div>
                     <div id="playerOne_healthTotalRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="The total health you have. Base 10 + health roll (1-20)">
                             <input id="playerOne_healthTotal" class="inputField" type="textarea" placeholder="only cats get 9 lives">
                         </span>
                     </div>
@@ -75,7 +75,7 @@
                 <p class="statisticLabel">Health Bar</p>
                 <progress id="playerOne_currentHealth" max="30"></progress>
 
-                <div class="row center-align section">
+                <div class="row center-align">
                     <a class="btn" id="playerOne_confirm" onclick=confirmPlayer(1)><i class="material-icons">check</i> Confirm Player 1</a>
                     <a class="btn red hide" id="playerOne_mulligan" onclick="mulliganRoll(1)">Player 1 Reroll <i class="material-icons">add</i></a>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="weapon row section">
                     <p class="statisticLabel">Weapon</p>
                     <div id="playerTwo_weaponRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="Sword > Hammer > Shield > Sword">
                             <input id="playerTwo_weapon" class="inputField" type="textarea" placeholder="Get a weapon!">
                         </span>
                     </div>
@@ -99,7 +99,7 @@
                 <div class="attackRating row section">
                     <p class="statisticLabel">Attack Rating</p>
                     <div id="playerTwo_attackRatingRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="attack determines the maximum damage you can do, less defender's defense with a 1 damage minimum">
                             <input id="playerTwo_attackRating" class="inputField" type="textarea" placeholder="Bring sick deeps">
                         </span>
                     </div>
@@ -111,7 +111,7 @@
                 <div class="defenseRating row section">
                     <p class="statisticLabel">Defense Rating</p>
                     <div id="playerTwo_defenseRatingRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="Defense determines your resistance to attack damage. If staggered, you will lose 1 defense for the remainder of the game.">
                             <input id="playerTwo_defenseRating" class="inputField" type="textarea" placeholder="Balls of Steel!">
                         </span>
                     </div>
@@ -123,7 +123,7 @@
                 <div class="healthTotal row section">
                     <p class="statisticLabel">Health Total</p>
                     <div id="playerTwo_healthTotalRoll-inputArea" class="col s8">
-                        <span class="hoverable">
+                        <span class="hoverable tooltipped" data-position="bottom" data-tooltip="The total health you have. Base 10 + health roll (1-20)">
                             <input id="playerTwo_healthTotal" class="inputField" type="textarea" placeholder="only cats get 9 lives">
                         </span>
                     </div>
@@ -131,6 +131,7 @@
                         <a class="btn orange lighten-2 black-text" id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</a>
                     </div>
                 </div>
+
                 <p class="statisticLabel">Health Bar</p>
                 <progress id="playerTwo_currentHealth" max="30"></progress>
 
@@ -138,8 +139,10 @@
                     <a class="btn" id="playerTwo_confirm" onclick=confirmPlayer(2)><i class="material-icons">check</i> Confirm Player 2</a>
                     <a class="btn red hide" id="playerTwo_mulligan" onclick="mulliganRoll(2)">Player 2 Reroll <i class="material-icons">add</i></a>
                 </div>
+
             </div>
         </div>
+
         <div class="divider"></div>
         <div class="row center-align">
             <a class="red btn" onclick="quickSetup()">Quick Start</a>
@@ -197,6 +200,7 @@
                                 </li>
                             </ol>
                         </li>
+                        <li>You can hover over the inputs for tooltips</li>
                     </ul>
                 </div>
 
