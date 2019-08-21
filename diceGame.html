@@ -14,14 +14,16 @@
 
     <body>
     <div class="container">
-        <h2>Alpha Duel:
+        <div class="title_container">
+            <h2>Alpha Duel:
             <div class="divider"></div> 
-        Betas get Cucked Edition</h2>
+            Betas get Cucked Edition</h2>
+        </div>
         <div class="row">
             <div id="playerOneCard" class="col m6 s12">
                 <h4 id="playerOneName" class="playerName">Beta One</h4>
                 <div class="weapon input-field row section">
-                    <p class="statisticLabel">Weapon</p>
+                    <p class="statisticLabel flow-text">Weapon</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_weaponRoll" onclick="weaponRoll(1)">Roll Stat</a>
                     </div>
@@ -31,7 +33,7 @@
                 </div>
 
                 <div class="attackRating row section">
-                    <p class="statisticLabel">Attack Rating</p>
+                    <p class="statisticLabel flow-text">Attack Rating</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_attackRatingRoll" onclick="attackRatingRoll(1)">Roll Stat</a>
                     </div>
@@ -41,7 +43,7 @@
                 </div>
 
                 <div class="defenseRating row section">
-                    <p class="statisticLabel">Defense Rating</p>
+                    <p class="statisticLabel flow-text">Defense Rating</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_defenseRatingRoll" onclick="defenseRatingRoll(1)">Roll Stat</a>
                     </div>
@@ -51,7 +53,7 @@
                 </div>
 
                 <div class="healthTotal row section">
-                    <p class="statisticLabel">Health Total</p>
+                    <p class="statisticLabel flow-text">Health Total</p>
                     <div class="col s4 right-align">
                         <a class="btn" id="playerOne_healthTotalRoll" onclick="healthTotalRoll(1)">Roll Stat</a>
                     </div>
@@ -59,16 +61,17 @@
                         <input id="playerOne_healthTotal" type="text" placeholder="only cats get 9 lives">
                     </div>
                 </div>
+                <progress id="playerOne_currentHealth" max="30"></progress>
                 <div class="row center-align section">
                     <a class="btn" id="playerOne_confirm" onclick=confirmPlayer(1)><i class="material-icons">check</i> Confirm Player 1</a>
-                    <a class="btn hide" id="playerOne_mulligan" onclick="mulliganRoll(1)">Player 1 Reroll <i class="material-icons">add</i></a>
+                    <a class="btn red hide" id="playerOne_mulligan" onclick="mulliganRoll(1)">Player 1 Reroll <i class="material-icons">add</i></a>
                 </div>
             </div>
 
             <div id="playerTwoCard" class="col m6 s12">
                 <h4 id="playerTwoName" class="playerName">Beta Two</h4>
                 <div class="weapon row section">
-                    <p class="statisticLabel">Weapon</p>
+                    <p class="statisticLabel flow-text">Weapon</p>
                     <div class="col s8">
                         <input id="playerTwo_weapon"type="text" placeholder="Get a weapon!">
                     </div>
@@ -78,7 +81,7 @@
                 </div>
 
                 <div class="attackRating row section">
-                    <p class="statisticLabel">Attack Rating</p>
+                    <p class="statisticLabel flow-text">Attack Rating</p>
                     <div class="col s8">
                         <input id="playerTwo_attackRating"type="text" placeholder="may RNG bless you with sick deeps">
                     </div>
@@ -88,7 +91,7 @@
                 </div>
 
                 <div class="defenseRating row section">
-                    <p class="statisticLabel">Defense Rating</p>
+                    <p class="statisticLabel flow-text">Defense Rating</p>
                     <div class="col s8">
                         <input id="playerTwo_defenseRating"type="text" placeholder="may your balls be made of steel">
                     </div>
@@ -98,7 +101,7 @@
                 </div>
 
                 <div class="healthTotal row section">
-                    <p class="statisticLabel">Health Total</p>
+                    <p class="statisticLabel flow-text">Health Total</p>
                     <div class="col s8">
                         <input id="playerTwo_healthTotal"type="text" placeholder="only cats get 9 lives">
                     </div>
@@ -106,16 +109,18 @@
                         <a class="btn" id="playerTwo_healthTotalRoll" onclick="healthTotalRoll(2)">Roll Stat</a>
                     </div>
                 </div>
+                
+                <progress id="playerTwo_currentHealth" max="30"></progress>
                 <div class="row center-align">
                     <a class="btn" id="playerTwo_confirm" onclick=confirmPlayer(2)><i class="material-icons">check</i> Confirm Player 2</a>
-                    <a class="btn hide" id="playerTwo_mulligan" onclick="mulliganRoll(2)">Player 2 Reroll <i class="material-icons">add</i></a>
+                    <a class="btn red hide" id="playerTwo_mulligan" onclick="mulliganRoll(2)">Player 2 Reroll <i class="material-icons">add</i></a>
                 </div>
             </div>
         </div>
         <div class="divider"></div>
         <div class="row center-align">
-            <a class="btn" onclick="quickSetup()">Quick Start</a>
-            <a class="btn" id="beginGame" onclick=beginGame()>Let's Start</a>
+            <a class="red btn" onclick="quickSetup()">Quick Start</a>
+            <a class="yellow black-text btn" id="beginGame" onclick=beginGame()>Let's Start</a>
         </div>
         <div class="game-description-card">
             <p>Rules for the game:
@@ -132,25 +137,11 @@
                 Stagger is a mechanic applied on every attack. If you stagger, you suffer a -1 penalty to your defense rating for the duration of the game.
                 <br>
                 Stagger is calculated by rolling a 6-sided dice twice. The first roll determines the base. 
+                <br>
+                <br>
+                Each player can mulligan individual stats, at random, after initial confirmation. You are not allowed to enter your own values.
             </p>
         </div>
-
-        <div class="playerTwo_mulligan-selection hide">
-            <ul>
-                <li>Weapon</li>
-                <li>Attack</li>
-                <li>Defense</li>
-                <li>Health</li>
-            </ul>
-        </div>
-
-        <select multiple class="hide">
-            <option value="playerOne_weapon">Weapon</option>
-            <option value="playerOne_attackRating">Attack Rating</option>
-            <option value="playerOne_defenseRating">Defense Rating</option>
-            <option value="playerOne_healthTotal">Health</option>
-        </select>
-    </div>
         
         <script src="diceGameScript.js" async defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

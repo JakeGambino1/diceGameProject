@@ -1,3 +1,11 @@
+body {
+    background-image: url(https://cdn.newsapi.com.au/image/v1/e1f5bf097e57e54a28bdbdeb62590359);
+}
+
+.container {
+    background-color: rgba(255,255,255, .85)
+}
+
 .statisticLabel {
     color: rgb(1, 0, 130);
     font-weight: bold;
@@ -25,4 +33,17 @@ h2 {
 
 .btn {
     margin-bottom: 5px;
+}
+
+#playerOne_currentHealth, #playerTwo_currentHealth {
+    min-width: 100%;
+}
+
+.disabled {
+    color: black;
+    background-color: blue;
+}
+
+.title_container{
+    color: blue;
 }

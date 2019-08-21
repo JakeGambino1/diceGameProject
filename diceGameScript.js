@@ -176,6 +176,7 @@ function confirmPlayer(whichPlayerConfirmed){
         document.getElementById("playerOne_confirm").classList.add("hide");
         document.getElementById("playerOneName").innerHTML = name;
         document.getElementById("playerOne_mulligan").classList.remove("hide");
+        document.getElementById("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
     }
     else if (whichPlayerConfirmed == 2){
         playerTwo = new Player(
@@ -188,6 +189,7 @@ function confirmPlayer(whichPlayerConfirmed){
             document.getElementById("playerTwo_confirm").classList.add("hide"); 
             document.getElementById("playerTwoName").innerHTML = name;
             document.getElementById("playerTwo_mulligan").classList.remove("hide");
+            document.getElementById("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
     }
 }
 
@@ -282,7 +284,7 @@ function weaponTypeBonusDamage(attackingPlayer, defendingPlayer){
         return true;
     }
     else {
-        console.log(defendingPlayer.name + " braces for impact.  " + attackingPlayer.name + "'s weapon is no match for the alpha!");
+        console.log(defendingPlayer.name + " braces for impact.  " + attackingPlayer.name + "'s weapon is no match for the alpha plays!");
         return false;
     }
 }
@@ -336,14 +338,15 @@ function postCombatUpdate(){
 
     document.getElementById("playerOne_healthTotal").value = playerOne.healthTotal;
     document.getElementById("playerTwo_healthTotal").value = playerTwo.healthTotal;
+
+    document.getElementById("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
+    document.getElementById("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
 }
 
-// Reroll statistic
 function reRollStatistic(){
 
 }
 
-// Modify Statistic
 function modifyStatistic(playerModifying, statisticToBeModified, amount){
 
 }
