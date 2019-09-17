@@ -57,37 +57,37 @@ function weaponRoll(playerRolling){
 
     if (playerRolling == 1){
         if (weaponTypeRoll == 1){
-            document.getElementById("playerOne_weapon").value = "sword";
+            $("playerOne_weapon").value = "sword";
         }
         else if (weaponTypeRoll == 2){
-            document.getElementById("playerOne_weapon").value = "hammer";
+            $("playerOne_weapon").value = "hammer";
         }
         else if (weaponTypeRoll == 3) {
-            document.getElementById("playerOne_weapon").value = "shield";
+            $("playerOne_weapon").value = "shield";
         }
         else {
             console.log("error");
         }
-        document.getElementById("playerOne_weapon").setAttribute("disabled", true);
-        document.getElementById("playerOne_weaponRoll").classList.add("hide");
-        document.getElementById("playerOne_weaponRoll-inputArea").classList.add("s12", "center-align");
+        $("playerOne_weapon").setAttribute("disabled", true);
+        $("playerOne_weaponRoll").classList.add("hide");
+        $("playerOne_weaponRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
         if (weaponTypeRoll == 1){
-            document.getElementById("playerTwo_weapon").value = "sword";
+            $("playerTwo_weapon").value = "sword";
         }
         else if (weaponTypeRoll == 2){
-            document.getElementById("playerTwo_weapon").value = "hammer";
+            $("playerTwo_weapon").value = "hammer";
         }
         else if (weaponTypeRoll == 3) {
-            document.getElementById("playerTwo_weapon").value = "shield";
+            $("playerTwo_weapon").value = "shield";
         }
         else {
             console.log("error");
         }
-        document.getElementById("playerTwo_weapon").setAttribute("disabled", true);
-        document.getElementById("playerTwo_weaponRoll").classList.add("hide");
-        document.getElementById("playerTwo_weaponRoll-inputArea").classList.add("s12", "center-align");
+        $("playerTwo_weapon").setAttribute("disabled", true);
+        $("playerTwo_weaponRoll").classList.add("hide");
+        $("playerTwo_weaponRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -96,17 +96,17 @@ function attackRatingRoll(playerRolling){
     let attackRating = rollDice(attackRatingMax);
 
     if (playerRolling == 1){
-        document.getElementById("playerOne_attackRating").value=attackRating;
-        document.getElementById("playerOne_attackRatingRoll").classList.add("hide");
-        document.getElementById("playerOne_attackRating").setAttribute("disabled", true);
-        document.getElementById("playerOne_attackRatingRoll-inputArea").classList.add("s12", "center-align");
+        $("playerOne_attackRating").value=attackRating;
+        $("playerOne_attackRatingRoll").classList.add("hide");
+        $("playerOne_attackRating").setAttribute("disabled", true);
+        $("playerOne_attackRatingRoll-inputArea").classList.add("s12", "center-align");
         
     }
     else {
-        document.getElementById("playerTwo_attackRating").value=attackRating;
-        document.getElementById("playerTwo_attackRatingRoll").classList.add("hide");
-        document.getElementById("playerTwo_attackRating").setAttribute("disabled", true);
-        document.getElementById("playerTwo_attackRatingRoll-inputArea").classList.add("s12", "center-align");
+        $("playerTwo_attackRating").value=attackRating;
+        $("playerTwo_attackRatingRoll").classList.add("hide");
+        $("playerTwo_attackRating").setAttribute("disabled", true);
+        $("playerTwo_attackRatingRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -115,16 +115,16 @@ function defenseRatingRoll(playerRolling){
     let defenseRating = rollDice(defenseRatingMax);
 
     if (playerRolling == 1){
-        document.getElementById("playerOne_defenseRating").value=defenseRating;
-        document.getElementById("playerOne_defenseRatingRoll").classList.add("hide");
-        document.getElementById("playerOne_defenseRating").setAttribute("disabled", true);
-        document.getElementById("playerOne_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
+        $("playerOne_defenseRating").value=defenseRating;
+        $("playerOne_defenseRatingRoll").classList.add("hide");
+        $("playerOne_defenseRating").setAttribute("disabled", true);
+        $("playerOne_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
-        document.getElementById("playerTwo_defenseRating").value=defenseRating;
-        document.getElementById("playerTwo_defenseRatingRoll").classList.add("hide");
-        document.getElementById("playerTwo_defenseRating").setAttribute("disabled", true);
-        document.getElementById("playerTwo_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
+        $("playerTwo_defenseRating").value=defenseRating;
+        $("playerTwo_defenseRatingRoll").classList.add("hide");
+        $("playerTwo_defenseRating").setAttribute("disabled", true);
+        $("playerTwo_defenseRatingRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -134,16 +134,16 @@ function healthTotalRoll(playerRolling){
     let totalHealth = rollDice(healthBonusMax) + baseHealth;
 
     if (playerRolling == 1){
-        document.getElementById("playerOne_healthTotal").value=totalHealth;
-        document.getElementById("playerOne_healthTotalRoll").classList.add("hide");
-        document.getElementById("playerOne_healthTotal").setAttribute("disabled", true);
-        document.getElementById("playerOne_healthTotalRoll-inputArea").classList.add("s12", "center-align");
+        $("playerOne_healthTotal").value=totalHealth;
+        $("playerOne_healthTotalRoll").classList.add("hide");
+        $("playerOne_healthTotal").setAttribute("disabled", true);
+        $("playerOne_healthTotalRoll-inputArea").classList.add("s12", "center-align");
     }
     else {
-        document.getElementById("playerTwo_healthTotal").value=totalHealth;
-        document.getElementById("playerTwo_healthTotalRoll").classList.add("hide");
-        document.getElementById("playerTwo_healthTotal").setAttribute("disabled", true);
-        document.getElementById("playerTwo_healthTotalRoll-inputArea").classList.add("s12", "center-align");
+        $("playerTwo_healthTotal").value=totalHealth;
+        $("playerTwo_healthTotalRoll").classList.add("hide");
+        $("playerTwo_healthTotal").setAttribute("disabled", true);
+        $("playerTwo_healthTotalRoll-inputArea").classList.add("s12", "center-align");
     }
 }
 
@@ -176,29 +176,28 @@ function confirmPlayer(whichPlayerConfirmed){
     alert("Once confirming, you will have an option to mulligan random stats to random values. Use it if you have a gambling problem... or really bad rolls across the board.")
     if (whichPlayerConfirmed == 1){
         playerOne = new Player(
-            name = prompt("What name would you like to use for Player 1?"),
-            document.getElementById("playerOne_weapon").value,
-            document.getElementById("playerOne_attackRating").value,
-            document.getElementById("playerOne_defenseRating").value,
-            document.getElementById("playerOne_healthTotal").value
+            name = prompt("What name would you like to use for Player 1?"),$("playerOne_weapon").value,
+            $("playerOne_attackRating").value,
+            $("playerOne_defenseRating").value,
+            $("playerOne_healthTotal").value
         )
-        document.getElementById("playerOne_confirm").classList.add("hide");
-        document.getElementById("playerOneName").innerHTML = name;
-        document.getElementById("playerOne_mulligan").classList.remove("hide");
-        document.getElementById("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
+        $("playerOne_confirm").classList.add("hide");
+        $("playerOneName").innerHTML = name;
+        $("playerOne_mulligan").classList.remove("hide");
+        $("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
     }
     else if (whichPlayerConfirmed == 2){
         playerTwo = new Player(
             name = prompt("What name would you like to use for Player 2?"),
-            document.getElementById("playerTwo_weapon").value, 
-            document.getElementById("playerTwo_attackRating").value, 
-            document.getElementById("playerTwo_defenseRating").value, 
-            document.getElementById("playerTwo_healthTotal").value
+            $("playerTwo_weapon").value, 
+            $("playerTwo_attackRating").value, 
+            $("playerTwo_defenseRating").value, 
+            $("playerTwo_healthTotal").value
             )    
-            document.getElementById("playerTwo_confirm").classList.add("hide"); 
-            document.getElementById("playerTwoName").innerHTML = name;
-            document.getElementById("playerTwo_mulligan").classList.remove("hide");
-            document.getElementById("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
+            $("playerTwo_confirm").classList.add("hide"); 
+            $("playerTwoName").innerHTML = name;
+            $("playerTwo_mulligan").classList.remove("hide");
+            $("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
     }
 }
 
@@ -336,20 +335,24 @@ function checkWinCondition(defendingPlayer, attackingPlayer){
 }
 
 function postCombatUpdate(){
-    document.getElementById("playerOne_weapon").value = playerOne.weapon;
-    document.getElementById("playerTwo_weapon").value = playerTwo.weapon;
+    $("playerOne_weapon").value = playerOne.weapon;
+    $("playerTwo_weapon").value = playerTwo.weapon;
 
-    document.getElementById("playerOne_attackRating").value = playerOne.attackRating;
-    document.getElementById("playerTwo_attackRating").value = playerTwo.attackRating;
+    $("playerOne_attackRating").value = playerOne.attackRating;
+    $("playerTwo_attackRating").value = playerTwo.attackRating;
 
-    document.getElementById("playerOne_defenseRating").value = playerOne.defenseRating;
-    document.getElementById("playerTwo_defenseRating").value = playerTwo.defenseRating;
+    $("playerOne_defenseRating").value = playerOne.defenseRating;
+    $("playerTwo_defenseRating").value = playerTwo.defenseRating;
 
-    document.getElementById("playerOne_healthTotal").value = playerOne.healthTotal;
-    document.getElementById("playerTwo_healthTotal").value = playerTwo.healthTotal;
+    $("playerOne_healthTotal").value = playerOne.healthTotal;
+    $("playerTwo_healthTotal").value = playerTwo.healthTotal;
 
-    document.getElementById("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
-    document.getElementById("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
+    $("playerOne_currentHealth").value = document.getElementById("playerOne_healthTotal").value;
+    $("playerTwo_currentHealth").value = document.getElementById("playerTwo_healthTotal").value;
+}
+
+function $ (x) {
+    return document.getElementById(x);
 }
 
 M.AutoInit();
